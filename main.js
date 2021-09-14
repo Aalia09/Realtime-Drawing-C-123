@@ -19,5 +19,10 @@ function modelLoaded()
 
 function draw()
 {
-    background("#84e89f");
+    background("#6e75d4");
+}
+
+function gotPoses()
+{
+    console.log("Got poses");
 }
