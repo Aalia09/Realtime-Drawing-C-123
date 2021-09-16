@@ -9,8 +9,8 @@ function setup()
     video= createCapture(VIDEO);
     video.size(550 , 500);
 
-    canvas = createCanvas(550 ,500);
-    canvas.position(560 , 150);
+    canvas = createCanvas(550 ,540);
+    canvas.position(560 , 110);
 
     poseNet = ml5.poseNet(video , modelLoaded);
     poseNet.on("pose" , gotPoses);
@@ -23,8 +23,16 @@ function modelLoaded()
     console.log("PoseNet is initialized");
 }
 
+function draw()
+{
+    background("#6e75d4");
+    document.getElementById("square_side").innerHTML = "Width and Height of a Square will be = " + difference + "px";
+    fill("black");
+    stroke("peach");
+    square(noseX , noseY , difference);
+}
 
-function gotPoses()
+function gotPoses(results)
 {
     if(results.length > 0)
     {
@@ -39,14 +47,5 @@ function gotPoses()
 
         console.log("leftwristX = " + leftwristX + "rightwristX = " + rightwristX + "difference = " + difference);
     }
-}
 
-
-function draw()
-{
-    background("pink");
-    document.getElementById("font-size").innerHTML = "Font size of the text is = " + difference + "px";
-     stroke("black");
-     textSize(difference);
-    text("Aalia" , 30 , 300)
 }
